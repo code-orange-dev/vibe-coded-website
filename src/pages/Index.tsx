@@ -19,6 +19,12 @@ const Index = () => {
     '/IMG_3529.jpeg', // Simba
   ];
 
+  const socialLinks = {
+    instagram: 'https://www.instagram.com/baltic_bengals',
+    facebook: 'https://www.facebook.com/balticbengals/',
+    messenger: 'https://www.facebook.com/balticbengals/',
+  };
+
   const [activeSection, setActiveSection] = useState('hero');
   const [scrolled, setScrolled] = useState(false);
 
@@ -112,10 +118,10 @@ const Index = () => {
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-amber-700 via-orange-600 to-amber-700 bg-clip-text text-transparent animate-fade-in-up">
               Baltic Bengals
             </h1>
-            <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <p className="text-xl md:text-2xl text-amber-100 dark:text-amber-100 mb-8 max-w-3xl mx-auto animate-fade-in-up font-semibold" style={{ animationDelay: '0.2s' }}>
               Premium Bengal Cat Cattery
             </p>
-            <p className="text-lg text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+            <p className="text-lg text-amber-100 dark:text-amber-100 mb-12 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
               Breeding exceptional Bengal kittens with stunning coats, loving personalities, and championship bloodlines in the Baltic region.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
@@ -141,9 +147,9 @@ const Index = () => {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
             {[
-              { icon: Award, label: 'Years Experience', value: '15+' },
-              { icon: Users, label: 'Happy Families', value: '500+' },
-              { icon: PawPrint, label: 'Bengals Bred', value: '200+' },
+              { icon: Award, label: 'Years Experience', value: '6+' },
+              { icon: Users, label: 'Happy Families', value: '200+' },
+              { icon: PawPrint, label: 'Bengals Bred', value: '100+' },
               { icon: Sparkles, label: 'Championship Lines', value: 'Premium' },
             ].map((stat, index) => (
               <Card key={index} className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-amber-200 dark:border-amber-700/50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
@@ -381,16 +387,17 @@ const Index = () => {
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Interested in a Specific Kitten?</h3>
                 <p className="text-gray-700 dark:text-gray-300 mb-6">
-                  Contact us to learn more about any of our available kittens. We're happy to provide additional photos, videos, and information about each kitten's personality, health, and pedigree.
+                  Call us or message us on Facebook Messenger to learn more about any of our available kittens. We're happy to provide additional photos, videos, and information about each kitten's personality, health, and pedigree.
                 </p>
-                <Button
-                  onClick={() => scrollToSection('contact')}
-                  size="lg"
-                  className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white"
+                <a
+                  href={socialLinks.messenger}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
                 >
                   <Mail className="w-5 h-5 mr-2" />
-                  Contact Us Today
-                </Button>
+                  Message on Facebook Messenger
+                </a>
               </CardContent>
             </Card>
           </div>
@@ -468,120 +475,6 @@ const Index = () => {
               </Card>
             ))}
           </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-gradient-to-br from-amber-100 to-orange-100 dark:from-gray-700 dark:to-gray-800 border-amber-300 dark:border-amber-600 shadow-xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Bengal Coat Patterns</h3>
-                <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                      1
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-1">Rosetted</h4>
-                      <p className="text-gray-700 dark:text-gray-300 mb-3">The most popular pattern, featuring beautiful rosettes that resemble a leopard's spots. Can be arrowhead, pawprint, or doughnut shaped.</p>
-                      <div className="rounded-lg overflow-hidden shadow-md">
-                        <img
-                          src="/IMG_2348.jpeg"
-                          alt="Rosetted Bengal cat pattern example"
-                          className="w-full h-32 object-cover"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                      2
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-1">Marbled</h4>
-                      <p className="text-gray-700 dark:text-gray-300 mb-3">A stunning swirling pattern that creates a unique, almost painted appearance. Each marbled Bengal has a one-of-a-kind pattern.</p>
-                      <div className="rounded-lg overflow-hidden shadow-md">
-                        <img
-                          src="/IMG_2215.jpeg"
-                          alt="Marbled Bengal cat pattern example"
-                          className="w-full h-32 object-cover"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                      3
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-1">Spotted</h4>
-                      <p className="text-gray-700 dark:text-gray-300 mb-3">Classic spotted pattern with distinct spots that can be single or double-colored. Bold and striking in appearance.</p>
-                      <div className="rounded-lg overflow-hidden shadow-md">
-                        <img
-                          src="/IMG_2221.jpeg"
-                          alt="Spotted Bengal cat pattern example"
-                          className="w-full h-32 object-cover"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-to-br from-amber-100 to-orange-100 dark:from-gray-700 dark:to-gray-800 border-amber-300 dark:border-amber-600 shadow-xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Bengal Colors</h3>
-                <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                      1
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-1">Brown/Charcoal</h4>
-                      <p className="text-gray-700 dark:text-gray-300 mb-3">The most traditional and common color, ranging from light golden brown to deep rich charcoal tones.</p>
-                      <div className="rounded-lg overflow-hidden shadow-md">
-                        <img
-                          src="/IMG_3531.jpeg"
-                          alt="Brown/Charcoal Bengal cat color example"
-                          className="w-full h-32 object-cover"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                      2
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-1">Snow</h4>
-                      <p className="text-gray-700 dark:text-gray-300 mb-3">Includes Seal Lynx Point, Seal Mink, and Seal Sepia. Beautiful light cream to ivory coats with blue or aqua eyes.</p>
-                      <div className="rounded-lg overflow-hidden shadow-md">
-                        <img
-                          src="/IMG_3533.jpeg"
-                          alt="Snow Bengal cat color example"
-                          className="w-full h-32 object-cover"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                      3
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-1">Silver</h4>
-                      <p className="text-gray-700 dark:text-gray-300 mb-3">Striking silver-white coat with black or dark grey markings. Very distinctive and elegant appearance.</p>
-                      <div className="rounded-lg overflow-hidden shadow-md">
-                        <img
-                          src="/IMG_3535.jpeg"
-                          alt="Silver Bengal cat color example"
-                          className="w-full h-32 object-cover"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
         </div>
       </section>
 
@@ -608,7 +501,7 @@ const Index = () => {
                     </div>
                     <div>
                       <div className="text-sm text-gray-600 dark:text-gray-400">Location</div>
-                      <div className="font-semibold text-gray-900 dark:text-white">Baltic Region, Europe</div>
+                      <div className="font-semibold text-gray-900 dark:text-white">Vilniaus st, 76291 Šiauliai, Lithuania</div>
                     </div>
                   </div>
 
@@ -618,7 +511,7 @@ const Index = () => {
                     </div>
                     <div>
                       <div className="text-sm text-gray-600 dark:text-gray-400">Email</div>
-                      <div className="font-semibold text-gray-900 dark:text-white">info@balticbengals.com</div>
+                      <div className="font-semibold text-gray-900 dark:text-white">hello@balticbengals.com</div>
                     </div>
                   </div>
 
@@ -628,19 +521,48 @@ const Index = () => {
                     </div>
                     <div>
                       <div className="text-sm text-gray-600 dark:text-gray-400">Phone</div>
-                      <div className="font-semibold text-gray-900 dark:text-white">+370 XXX XXXXX</div>
+                      <div className="font-semibold text-gray-900 dark:text-white">+370 (611) 77 900</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center">
+                      <Phone className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">International</div>
+                      <div className="font-semibold text-gray-900 dark:text-white">+447534692067 (WhatsApp, Viber, WeChat)</div>
                     </div>
                   </div>
 
                   <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
                     <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">Follow Us</div>
                     <div className="flex space-x-4">
-                      <Button variant="outline" size="icon" className="border-amber-300 dark:border-amber-600 hover:bg-amber-50 dark:hover:bg-amber-900/20">
+                      <a
+                        href={socialLinks.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-amber-300 dark:border-amber-600 bg-white dark:bg-gray-800 hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors"
+                      >
                         <Instagram className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-                      </Button>
-                      <Button variant="outline" size="icon" className="border-amber-300 dark:border-amber-600 hover:bg-amber-50 dark:hover:bg-amber-900/20">
+                      </a>
+                      <a
+                        href={socialLinks.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-amber-300 dark:border-amber-600 bg-white dark:bg-gray-800 hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors"
+                      >
                         <Facebook className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-                      </Button>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
+                    <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">Registration Numbers</div>
+                    <div className="text-sm text-gray-700 dark:text-gray-300">
+                      <div>WCF No. 23343-2020</div>
+                      <div>No. LGAC 330/20</div>
+                      <div>VMVT number: LT 77-29-085</div>
                     </div>
                   </div>
                 </div>
@@ -741,12 +663,22 @@ const Index = () => {
             <div>
               <h4 className="text-lg font-bold mb-4 text-amber-400">Connect With Us</h4>
               <div className="flex space-x-4">
-                <Button variant="outline" size="icon" className="border-gray-600 hover:bg-gray-800 text-white">
+                <a
+                  href={socialLinks.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-600 hover:bg-gray-800 text-white transition-colors"
+                >
                   <Instagram className="w-5 h-5" />
-                </Button>
-                <Button variant="outline" size="icon" className="border-gray-600 hover:bg-gray-800 text-white">
+                </a>
+                <a
+                  href={socialLinks.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-600 hover:bg-gray-800 text-white transition-colors"
+                >
                   <Facebook className="w-5 h-5" />
-                </Button>
+                </a>
               </div>
             </div>
           </div>
