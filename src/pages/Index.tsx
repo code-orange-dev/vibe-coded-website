@@ -525,15 +525,7 @@ const Index = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center">
-                      <Phone className="w-6 h-6 text-amber-600 dark:text-amber-400" />
-                    </div>
-                    <div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">International</div>
-                      <div className="font-semibold text-gray-900 dark:text-white">+447534692067 (WhatsApp, Viber, WeChat)</div>
-                    </div>
-                  </div>
+                  
 
                   <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
                     <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">Follow Us</div>
@@ -566,56 +558,6 @@ const Index = () => {
                     </div>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white dark:bg-gray-800 border-amber-200 dark:border-amber-700/50 shadow-xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Send Us a Message</h3>
-                <form className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Your Name</label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
-                      placeholder="Enter your name"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
-                    <input
-                      type="email"
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
-                      placeholder="Enter your email"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subject</label>
-                    <select className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all">
-                      <option>Interested in a Kitten</option>
-                      <option>General Inquiry</option>
-                      <option>Breeding Questions</option>
-                      <option>Visit Request</option>
-                      <option>Other</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
-                    <textarea
-                      rows={4}
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all resize-none"
-                      placeholder="Tell us about yourself and what you're looking for..."
-                    />
-                  </div>
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold"
-                  >
-                    <Mail className="w-5 h-5 mr-2" />
-                    Send Message
-                  </Button>
-                </form>
               </CardContent>
             </Card>
           </div>
