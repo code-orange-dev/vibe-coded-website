@@ -65,8 +65,8 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <PawPrint className="w-8 h-8 text-amber-600 dark:text-amber-400" />
-              <span className="text-2xl font-bold bg-gradient-to-r from-amber-600 to-orange-500 bg-clip-text text-transparent">
+              <PawPrint className="w-8 h-8 text-amber-100 dark:text-amber-100" />
+              <span className="text-2xl font-bold text-amber-100 dark:text-amber-100">
                 Baltic Bengals
               </span>
             </div>
@@ -75,8 +75,8 @@ const Index = () => {
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase().replace(' ', ''))}
-                  className={`text-sm font-medium transition-colors hover:text-amber-600 dark:hover:text-amber-400 ${
-                    activeSection === item.toLowerCase().replace(' ', '') ? 'text-amber-600 dark:text-amber-400' : 'text-gray-700 dark:text-gray-300'
+                  className={`text-sm font-medium transition-colors hover:text-amber-100 dark:hover:text-amber-100 ${
+                    activeSection === item.toLowerCase().replace(' ', '') ? 'text-amber-100 dark:text-amber-100' : 'text-amber-100/80 dark:text-amber-100/80'
                   }`}
                 >
                   {item}
@@ -525,7 +525,7 @@ const Index = () => {
                     </div>
                   </div>
 
-                  
+
 
                   <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
                     <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">Follow Us</div>
