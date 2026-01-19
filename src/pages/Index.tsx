@@ -10,6 +10,15 @@ const Index = () => {
     description: 'Welcome to Baltic Bengals - your trusted source for beautiful, healthy, and well-socialized Bengal kittens. Located in the Baltic region, we specialize in breeding exceptional Bengal cats with stunning coats and loving personalities.',
   });
 
+  const kittenImages = [
+    '/IMG_3570.jpeg', // Amber
+    '/IMG_3536.jpeg', // Leo
+    '/IMG_3531.jpeg', // Zara
+    '/IMG_3535.jpeg', // Max
+    '/IMG_3533.jpeg', // Luna
+    '/IMG_3529.jpeg', // Simba
+  ];
+
   const [activeSection, setActiveSection] = useState('hero');
   const [scrolled, setScrolled] = useState(false);
 
@@ -74,18 +83,28 @@ const Index = () => {
 
       {/* Hero Section */}
       <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/IMG_3341.jpeg"
+            alt="Beautiful Bengal cat"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-900/80 via-orange-900/60 to-amber-900/80" />
+        </div>
+
         {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5 dark:opacity-10">
+        <div className="absolute inset-0 opacity-5 dark:opacity-10 z-10">
           <div className="absolute inset-0" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d97706' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }} />
         </div>
 
         {/* Animated Gradient Orbs */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-amber-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-orange-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-amber-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse z-20" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-orange-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse z-20" style={{ animationDelay: '1s' }} />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
+        <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
           <div className="mb-8 animate-fade-in">
             <div className="inline-flex items-center justify-center w-24 h-24 mb-6 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 shadow-2xl">
               <PawPrint className="w-12 h-12 text-white" />
@@ -198,6 +217,42 @@ const Index = () => {
             </div>
 
             <div className="relative">
+              {/* Image Gallery */}
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                <div className="space-y-4">
+                  <div className="relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <img
+                      src="/IMG_3250.jpeg"
+                      alt="Beautiful Bengal cat"
+                      className="w-full h-48 object-cover"
+                    />
+                  </div>
+                  <div className="relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <img
+                      src="/IMG_3222.jpeg"
+                      alt="Bengal kitten playing"
+                      className="w-full h-48 object-cover"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div className="relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <img
+                      src="/IMG_3336.jpeg"
+                      alt="Adult Bengal cat"
+                      className="w-full h-48 object-cover"
+                    />
+                  </div>
+                  <div className="relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <img
+                      src="/IMG_2213.jpeg"
+                      alt="Bengal cat close-up"
+                      className="w-full h-48 object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+
               <Card className="bg-gradient-to-br from-amber-100 to-orange-100 dark:from-gray-700 dark:to-gray-800 border-amber-300 dark:border-amber-600 shadow-2xl">
                 <CardContent className="p-12">
                   <div className="space-y-6">
@@ -271,11 +326,17 @@ const Index = () => {
             ].map((kitten, index) => (
               <Card key={index} className="bg-white dark:bg-gray-800 border-amber-200 dark:border-amber-700/50 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
                 <CardContent className="p-6">
-                  <div className="relative mb-4 h-48 bg-gradient-to-br from-amber-200 to-orange-200 dark:from-amber-900 dark:to-orange-900 rounded-lg flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-300">
-                    <PawPrint className="w-20 h-20 text-amber-500/30 dark:text-amber-400/30" />
-                    <div className="absolute top-2 right-2 bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                  <div className="relative mb-4 h-48 rounded-lg overflow-hidden group-hover:scale-105 transition-transform duration-300">
+                    <img
+                      src={kittenImages[index]}
+                      alt={`${kitten.name} - ${kitten.color} Bengal kitten with ${kitten.pattern} pattern`}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute top-2 right-2 bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                       Available
                     </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
                   <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">{kitten.name}</h3>
                   <div className="space-y-2 mb-4">
@@ -348,6 +409,21 @@ const Index = () => {
             </p>
           </div>
 
+          {/* Hero Image for Why Bengals Section */}
+          <div className="mb-16 relative rounded-2xl overflow-hidden shadow-2xl">
+            <img
+              src="/IMG_2236.jpeg"
+              alt="Stunning Bengal cat showcasing the beauty of the breed"
+              className="w-full h-96 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end">
+              <div className="p-8 text-white">
+                <h3 className="text-3xl font-bold mb-2">The Beauty of Bengals</h3>
+                <p className="text-lg opacity-90">Wild looks, gentle hearts - the perfect combination</p>
+              </div>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {[
               {
@@ -397,32 +473,53 @@ const Index = () => {
             <Card className="bg-gradient-to-br from-amber-100 to-orange-100 dark:from-gray-700 dark:to-gray-800 border-amber-300 dark:border-amber-600 shadow-xl">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Bengal Coat Patterns</h3>
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
                       1
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-1">Rosetted</h4>
-                      <p className="text-gray-700 dark:text-gray-300">The most popular pattern, featuring beautiful rosettes that resemble a leopard's spots. Can be arrowhead, pawprint, or doughnut shaped.</p>
+                      <p className="text-gray-700 dark:text-gray-300 mb-3">The most popular pattern, featuring beautiful rosettes that resemble a leopard's spots. Can be arrowhead, pawprint, or doughnut shaped.</p>
+                      <div className="rounded-lg overflow-hidden shadow-md">
+                        <img
+                          src="/IMG_2348.jpeg"
+                          alt="Rosetted Bengal cat pattern example"
+                          className="w-full h-32 object-cover"
+                        />
+                      </div>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
                       2
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-1">Marbled</h4>
-                      <p className="text-gray-700 dark:text-gray-300">A stunning swirling pattern that creates a unique, almost painted appearance. Each marbled Bengal has a one-of-a-kind pattern.</p>
+                      <p className="text-gray-700 dark:text-gray-300 mb-3">A stunning swirling pattern that creates a unique, almost painted appearance. Each marbled Bengal has a one-of-a-kind pattern.</p>
+                      <div className="rounded-lg overflow-hidden shadow-md">
+                        <img
+                          src="/IMG_2215.jpeg"
+                          alt="Marbled Bengal cat pattern example"
+                          className="w-full h-32 object-cover"
+                        />
+                      </div>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
                       3
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-1">Spotted</h4>
-                      <p className="text-gray-700 dark:text-gray-300">Classic spotted pattern with distinct spots that can be single or double-colored. Bold and striking in appearance.</p>
+                      <p className="text-gray-700 dark:text-gray-300 mb-3">Classic spotted pattern with distinct spots that can be single or double-colored. Bold and striking in appearance.</p>
+                      <div className="rounded-lg overflow-hidden shadow-md">
+                        <img
+                          src="/IMG_2221.jpeg"
+                          alt="Spotted Bengal cat pattern example"
+                          className="w-full h-32 object-cover"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -432,32 +529,53 @@ const Index = () => {
             <Card className="bg-gradient-to-br from-amber-100 to-orange-100 dark:from-gray-700 dark:to-gray-800 border-amber-300 dark:border-amber-600 shadow-xl">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Bengal Colors</h3>
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
                       1
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-1">Brown/Charcoal</h4>
-                      <p className="text-gray-700 dark:text-gray-300">The most traditional and common color, ranging from light golden brown to deep rich charcoal tones.</p>
+                      <p className="text-gray-700 dark:text-gray-300 mb-3">The most traditional and common color, ranging from light golden brown to deep rich charcoal tones.</p>
+                      <div className="rounded-lg overflow-hidden shadow-md">
+                        <img
+                          src="/IMG_3531.jpeg"
+                          alt="Brown/Charcoal Bengal cat color example"
+                          className="w-full h-32 object-cover"
+                        />
+                      </div>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
                       2
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-1">Snow</h4>
-                      <p className="text-gray-700 dark:text-gray-300">Includes Seal Lynx Point, Seal Mink, and Seal Sepia. Beautiful light cream to ivory coats with blue or aqua eyes.</p>
+                      <p className="text-gray-700 dark:text-gray-300 mb-3">Includes Seal Lynx Point, Seal Mink, and Seal Sepia. Beautiful light cream to ivory coats with blue or aqua eyes.</p>
+                      <div className="rounded-lg overflow-hidden shadow-md">
+                        <img
+                          src="/IMG_3533.jpeg"
+                          alt="Snow Bengal cat color example"
+                          className="w-full h-32 object-cover"
+                        />
+                      </div>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
                       3
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-1">Silver</h4>
-                      <p className="text-gray-700 dark:text-gray-300">Striking silver-white coat with black or dark grey markings. Very distinctive and elegant appearance.</p>
+                      <p className="text-gray-700 dark:text-gray-300 mb-3">Striking silver-white coat with black or dark grey markings. Very distinctive and elegant appearance.</p>
+                      <div className="rounded-lg overflow-hidden shadow-md">
+                        <img
+                          src="/IMG_3535.jpeg"
+                          alt="Silver Bengal cat color example"
+                          className="w-full h-32 object-cover"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
