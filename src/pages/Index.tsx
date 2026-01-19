@@ -115,7 +115,7 @@ const Index = () => {
             <div className="inline-flex items-center justify-center w-24 h-24 mb-6 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 shadow-2xl">
               <PawPrint className="w-12 h-12 text-white" />
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-amber-700 via-orange-600 to-amber-700 bg-clip-text text-transparent animate-fade-in-up">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-amber-100 dark:text-amber-100 animate-fade-in-up">
               Baltic Bengals
             </h1>
             <p className="text-xl md:text-2xl text-amber-100 dark:text-amber-100 mb-8 max-w-3xl mx-auto animate-fade-in-up font-semibold" style={{ animationDelay: '0.2s' }}>
@@ -137,7 +137,7 @@ const Index = () => {
                 size="lg"
                 onClick={() => scrollToSection('contact')}
                 variant="outline"
-                className="px-8 py-6 text-lg font-semibold border-2 border-amber-600 text-amber-700 hover:bg-amber-50 dark:text-amber-400 dark:border-amber-400 dark:hover:bg-amber-900/20 transition-all duration-300 transform hover:-translate-y-1"
+                className="px-8 py-6 text-lg font-semibold border-2 border-amber-100 text-amber-100 hover:bg-amber-100/20 dark:border-amber-100 dark:text-amber-100 dark:hover:bg-amber-100/20 transition-all duration-300 transform hover:-translate-y-1"
               >
                 Contact Us
               </Button>
