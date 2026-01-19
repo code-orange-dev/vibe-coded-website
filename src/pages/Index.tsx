@@ -1,23 +1,685 @@
 import { useSeoMeta } from '@unhead/react';
-
-// FIXME: Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useEffect } from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { MapPin, Phone, Mail, Instagram, Facebook, Heart, Award, Sparkles, PawPrint, Users } from 'lucide-react';
 
 const Index = () => {
   useSeoMeta({
-    title: 'Welcome to Your Blank App',
-    description: 'A modern Nostr client application built with React, TailwindCSS, and Nostrify.',
+    title: 'Baltic Bengals - Premium Bengal Cat Cattery',
+    description: 'Welcome to Baltic Bengals - your trusted source for beautiful, healthy, and well-socialized Bengal kittens. Located in the Baltic region, we specialize in breeding exceptional Bengal cats with stunning coats and loving personalities.',
   });
 
+  const [activeSection, setActiveSection] = useState('hero');
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+
+      const sections = ['hero', 'about', 'kittens', 'breed', 'contact'];
+      const scrollPosition = window.scrollY + 200;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">
-          Welcome to Your Blank App
-        </h1>
-        <p className="text-xl text-gray-600 dark:text-gray-400">
-          Start building your amazing project here!
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      {/* Navigation */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-2">
+              <PawPrint className="w-8 h-8 text-amber-600 dark:text-amber-400" />
+              <span className="text-2xl font-bold bg-gradient-to-r from-amber-600 to-orange-500 bg-clip-text text-transparent">
+                Baltic Bengals
+              </span>
+            </div>
+            <div className="hidden md:flex space-x-8">
+              {['About', 'Kittens', 'Our Bengals', 'Contact'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item.toLowerCase().replace(' ', ''))}
+                  className={`text-sm font-medium transition-colors hover:text-amber-600 dark:hover:text-amber-400 ${
+                    activeSection === item.toLowerCase().replace(' ', '') ? 'text-amber-600 dark:text-amber-400' : 'text-gray-700 dark:text-gray-300'
+                  }`}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5 dark:opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d97706' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }} />
+        </div>
+
+        {/* Animated Gradient Orbs */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-amber-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-orange-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '1s' }} />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
+          <div className="mb-8 animate-fade-in">
+            <div className="inline-flex items-center justify-center w-24 h-24 mb-6 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 shadow-2xl">
+              <PawPrint className="w-12 h-12 text-white" />
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-amber-700 via-orange-600 to-amber-700 bg-clip-text text-transparent animate-fade-in-up">
+              Baltic Bengals
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+              Premium Bengal Cat Cattery
+            </p>
+            <p className="text-lg text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+              Breeding exceptional Bengal kittens with stunning coats, loving personalities, and championship bloodlines in the Baltic region.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+              <Button
+                size="lg"
+                onClick={() => scrollToSection('kittens')}
+                className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <Heart className="w-5 h-5 mr-2" />
+                View Our Kittens
+              </Button>
+              <Button
+                size="lg"
+                onClick={() => scrollToSection('contact')}
+                variant="outline"
+                className="px-8 py-6 text-lg font-semibold border-2 border-amber-600 text-amber-700 hover:bg-amber-50 dark:text-amber-400 dark:border-amber-400 dark:hover:bg-amber-900/20 transition-all duration-300 transform hover:-translate-y-1"
+              >
+                Contact Us
+              </Button>
+            </div>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
+            {[
+              { icon: Award, label: 'Years Experience', value: '15+' },
+              { icon: Users, label: 'Happy Families', value: '500+' },
+              { icon: PawPrint, label: 'Bengals Bred', value: '200+' },
+              { icon: Sparkles, label: 'Championship Lines', value: 'Premium' },
+            ].map((stat, index) => (
+              <Card key={index} className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-amber-200 dark:border-amber-700/50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                <CardContent className="p-6 text-center">
+                  <stat.icon className="w-10 h-10 mx-auto mb-3 text-amber-600 dark:text-amber-400" />
+                  <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">{stat.value}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-amber-600 dark:border-amber-400 rounded-full flex justify-center">
+            <div className="w-1.5 h-3 bg-amber-600 dark:bg-amber-400 rounded-full mt-2 animate-pulse" />
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-amber-700 to-orange-600 bg-clip-text text-transparent">
+              About Our Cattery
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+              A passion for excellence, a love for Bengals, and a commitment to raising the healthiest, most beautiful kittens
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <Card className="bg-white dark:bg-gray-800 border-amber-200 dark:border-amber-700/50 shadow-lg hover:shadow-xl transition-all duration-300">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white flex items-center">
+                    <Award className="w-6 h-6 mr-2 text-amber-600 dark:text-amber-400" />
+                    Our Mission
+                  </h3>
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    At Baltic Bengals, we believe every kitten deserves a loving home and the best possible start in life. Our mission is to breed healthy, well-socialized Bengal cats that bring joy and companionship to families worldwide.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white dark:bg-gray-800 border-amber-200 dark:border-amber-700/50 shadow-lg hover:shadow-xl transition-all duration-300">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white flex items-center">
+                    <Heart className="w-6 h-6 mr-2 text-amber-600 dark:text-amber-400" />
+                    Our Promise
+                  </h3>
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    We raise our kittens in a loving home environment, with constant socialization and premium care. Each kitten is health-checked, vaccinated, and comes with a genetic health guarantee and lifetime support.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white dark:bg-gray-800 border-amber-200 dark:border-amber-700/50 shadow-lg hover:shadow-xl transition-all duration-300">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white flex items-center">
+                    <PawPrint className="w-6 h-6 mr-2 text-amber-600 dark:text-amber-400" />
+                    Our Standards
+                  </h3>
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    We adhere to the highest breeding standards, ensuring proper genetic testing, excellent nutrition, and comprehensive veterinary care for all our cats and kittens. Our breeding program focuses on health, temperament, and conformation.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="relative">
+              <Card className="bg-gradient-to-br from-amber-100 to-orange-100 dark:from-gray-700 dark:to-gray-800 border-amber-300 dark:border-amber-600 shadow-2xl">
+                <CardContent className="p-12">
+                  <div className="space-y-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0 w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold">
+                        1
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-2">Premium Bloodlines</h4>
+                        <p className="text-gray-700 dark:text-gray-300">Our breeding cats come from championship lines with excellent pedigrees and exceptional traits.</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0 w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold">
+                        2
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-2">Health Guarantee</h4>
+                        <p className="text-gray-700 dark:text-gray-300">All kittens come with comprehensive health testing, vaccinations, and a genetic health guarantee.</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0 w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold">
+                        3
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-2">Socialization</h4>
+                        <p className="text-gray-700 dark:text-gray-300">Kittens are raised in our home with constant human interaction, ensuring loving, confident personalities.</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0 w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold">
+                        4
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-2">Lifetime Support</h4>
+                        <p className="text-gray-700 dark:text-gray-300">We provide ongoing guidance and support throughout your Bengal's entire life.</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Kittens Section */}
+      <section id="kittens" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-amber-100 to-orange-100 dark:from-gray-800 dark:to-gray-900">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-amber-700 to-orange-600 bg-clip-text text-transparent">
+              Our Available Kittens
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+              Meet our beautiful Bengal kittens, each one unique and ready to become your lifelong companion
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { name: 'Amber', color: 'Golden', pattern: 'Rosetted', age: '12 weeks', gender: 'Female', traits: ['Playful', 'Affectionate', 'Vocal'] },
+              { name: 'Leo', color: 'Brown', pattern: 'Marbled', age: '10 weeks', gender: 'Male', traits: ['Curious', 'Energetic', 'Intelligent'] },
+              { name: 'Zara', color: 'Snow', pattern: 'Rosetted', age: '14 weeks', gender: 'Female', traits: ['Gentle', 'Loving', 'Calm'] },
+              { name: 'Max', color: 'Golden', pattern: 'Rosetted', age: '8 weeks', gender: 'Male', traits: ['Adventurous', 'Friendly', 'Trainable'] },
+              { name: 'Luna', color: 'Silver', pattern: 'Rosetted', age: '11 weeks', gender: 'Female', traits: ['Sweet', 'Playful', 'Agile'] },
+              { name: 'Simba', color: 'Brown', pattern: 'Rosetted', age: '13 weeks', gender: 'Male', traits: ['Confident', 'Loyal', 'Social'] },
+            ].map((kitten, index) => (
+              <Card key={index} className="bg-white dark:bg-gray-800 border-amber-200 dark:border-amber-700/50 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
+                <CardContent className="p-6">
+                  <div className="relative mb-4 h-48 bg-gradient-to-br from-amber-200 to-orange-200 dark:from-amber-900 dark:to-orange-900 rounded-lg flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-300">
+                    <PawPrint className="w-20 h-20 text-amber-500/30 dark:text-amber-400/30" />
+                    <div className="absolute top-2 right-2 bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                      Available
+                    </div>
+                  </div>
+                  <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">{kitten.name}</h3>
+                  <div className="space-y-2 mb-4">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-600 dark:text-gray-400">Color:</span>
+                      <span className="font-semibold text-gray-900 dark:text-white">{kitten.color}</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-600 dark:text-gray-400">Pattern:</span>
+                      <span className="font-semibold text-gray-900 dark:text-white">{kitten.pattern}</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-600 dark:text-gray-400">Age:</span>
+                      <span className="font-semibold text-gray-900 dark:text-white">{kitten.age}</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-600 dark:text-gray-400">Gender:</span>
+                      <span className="font-semibold text-gray-900 dark:text-white">{kitten.gender}</span>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {kitten.traits.map((trait, idx) => (
+                      <span key={idx} className="bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 text-xs font-medium px-2 py-1 rounded-full">
+                        {trait}
+                      </span>
+                    ))}
+                  </div>
+                  <Button
+                    onClick={() => scrollToSection('contact')}
+                    className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold"
+                  >
+                    <Heart className="w-4 h-4 mr-2" />
+                    Inquire About {kitten.name}
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Card className="bg-white dark:bg-gray-800 border-amber-200 dark:border-amber-700/50 shadow-lg max-w-2xl mx-auto">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Interested in a Specific Kitten?</h3>
+                <p className="text-gray-700 dark:text-gray-300 mb-6">
+                  Contact us to learn more about any of our available kittens. We're happy to provide additional photos, videos, and information about each kitten's personality, health, and pedigree.
+                </p>
+                <Button
+                  onClick={() => scrollToSection('contact')}
+                  size="lg"
+                  className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white"
+                >
+                  <Mail className="w-5 h-5 mr-2" />
+                  Contact Us Today
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Bengals Section */}
+      <section id="breed" className="py-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-amber-700 to-orange-600 bg-clip-text text-transparent">
+              Why Bengal Cats?
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+              Discover what makes Bengal cats such extraordinary companions
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {[
+              {
+                icon: Sparkles,
+                title: 'Stunning Appearance',
+                description: 'Bengal cats are known for their beautiful, wild-looking coats with distinctive rosetted or marbled patterns that resemble their wild ancestors.',
+              },
+              {
+                icon: Heart,
+                title: 'Loving Personality',
+                description: 'Despite their wild appearance, Bengals are incredibly affectionate and form strong bonds with their human families.',
+              },
+              {
+                icon: Users,
+                title: 'Intelligent & Trainable',
+                description: 'Bengals are one of the smartest cat breeds. They can learn tricks, walk on leashes, and even play fetch!',
+              },
+              {
+                icon: PawPrint,
+                title: 'Active & Playful',
+                description: 'These energetic cats love to play, climb, and explore. They make excellent companions for active families.',
+              },
+              {
+                icon: Award,
+                title: 'Low Maintenance',
+                description: 'Bengals have short, easy-to-care-for coats that require minimal grooming while staying soft and shiny.',
+              },
+              {
+                icon: Sparkles,
+                title: 'Unique Personalities',
+                description: 'Each Bengal has its own distinct personality, from the adventurous explorer to the cuddly lap cat.',
+              },
+            ].map((feature, index) => (
+              <Card key={index} className="bg-white dark:bg-gray-800 border-amber-200 dark:border-amber-700/50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                <CardContent className="p-6 text-center">
+                  <div className="inline-flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 shadow-lg">
+                    <feature.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">{feature.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{feature.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="bg-gradient-to-br from-amber-100 to-orange-100 dark:from-gray-700 dark:to-gray-800 border-amber-300 dark:border-amber-600 shadow-xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Bengal Coat Patterns</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                      1
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-1">Rosetted</h4>
+                      <p className="text-gray-700 dark:text-gray-300">The most popular pattern, featuring beautiful rosettes that resemble a leopard's spots. Can be arrowhead, pawprint, or doughnut shaped.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                      2
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-1">Marbled</h4>
+                      <p className="text-gray-700 dark:text-gray-300">A stunning swirling pattern that creates a unique, almost painted appearance. Each marbled Bengal has a one-of-a-kind pattern.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                      3
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-1">Spotted</h4>
+                      <p className="text-gray-700 dark:text-gray-300">Classic spotted pattern with distinct spots that can be single or double-colored. Bold and striking in appearance.</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-to-br from-amber-100 to-orange-100 dark:from-gray-700 dark:to-gray-800 border-amber-300 dark:border-amber-600 shadow-xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Bengal Colors</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                      1
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-1">Brown/Charcoal</h4>
+                      <p className="text-gray-700 dark:text-gray-300">The most traditional and common color, ranging from light golden brown to deep rich charcoal tones.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                      2
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-1">Snow</h4>
+                      <p className="text-gray-700 dark:text-gray-300">Includes Seal Lynx Point, Seal Mink, and Seal Sepia. Beautiful light cream to ivory coats with blue or aqua eyes.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                      3
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-1">Silver</h4>
+                      <p className="text-gray-700 dark:text-gray-300">Striking silver-white coat with black or dark grey markings. Very distinctive and elegant appearance.</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-amber-100 to-orange-100 dark:from-gray-800 dark:to-gray-900">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-amber-700 to-orange-600 bg-clip-text text-transparent">
+              Get In Touch
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+              We'd love to hear from you! Whether you're interested in a kitten or just want to learn more about Bengals.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12">
+            <Card className="bg-white dark:bg-gray-800 border-amber-200 dark:border-amber-700/50 shadow-xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Contact Information</h3>
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center">
+                      <MapPin className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">Location</div>
+                      <div className="font-semibold text-gray-900 dark:text-white">Baltic Region, Europe</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center">
+                      <Mail className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">Email</div>
+                      <div className="font-semibold text-gray-900 dark:text-white">info@balticbengals.com</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center">
+                      <Phone className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">Phone</div>
+                      <div className="font-semibold text-gray-900 dark:text-white">+370 XXX XXXXX</div>
+                    </div>
+                  </div>
+
+                  <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
+                    <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">Follow Us</div>
+                    <div className="flex space-x-4">
+                      <Button variant="outline" size="icon" className="border-amber-300 dark:border-amber-600 hover:bg-amber-50 dark:hover:bg-amber-900/20">
+                        <Instagram className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                      </Button>
+                      <Button variant="outline" size="icon" className="border-amber-300 dark:border-amber-600 hover:bg-amber-50 dark:hover:bg-amber-900/20">
+                        <Facebook className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white dark:bg-gray-800 border-amber-200 dark:border-amber-700/50 shadow-xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Send Us a Message</h3>
+                <form className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Your Name</label>
+                    <input
+                      type="text"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                      placeholder="Enter your name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
+                    <input
+                      type="email"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                      placeholder="Enter your email"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subject</label>
+                    <select className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all">
+                      <option>Interested in a Kitten</option>
+                      <option>General Inquiry</option>
+                      <option>Breeding Questions</option>
+                      <option>Visit Request</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                    <textarea
+                      rows={4}
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all resize-none"
+                      placeholder="Tell us about yourself and what you're looking for..."
+                    />
+                  </div>
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold"
+                  >
+                    <Mail className="w-5 h-5 mr-2" />
+                    Send Message
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <PawPrint className="w-8 h-8 text-amber-400" />
+                <span className="text-2xl font-bold">Baltic Bengals</span>
+              </div>
+              <p className="text-gray-400 leading-relaxed">
+                Premium Bengal cat cattery dedicated to breeding healthy, beautiful, and well-socialized Bengal kittens with loving personalities.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-lg font-bold mb-4 text-amber-400">Quick Links</h4>
+              <ul className="space-y-2">
+                <li>
+                  <button onClick={() => scrollToSection('about')} className="text-gray-400 hover:text-white transition-colors">
+                    About Us
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => scrollToSection('kittens')} className="text-gray-400 hover:text-white transition-colors">
+                    Available Kittens
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => scrollToSection('breed')} className="text-gray-400 hover:text-white transition-colors">
+                    About Bengals
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => scrollToSection('contact')} className="text-gray-400 hover:text-white transition-colors">
+                    Contact
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-bold mb-4 text-amber-400">Connect With Us</h4>
+              <div className="flex space-x-4">
+                <Button variant="outline" size="icon" className="border-gray-600 hover:bg-gray-800 text-white">
+                  <Instagram className="w-5 h-5" />
+                </Button>
+                <Button variant="outline" size="icon" className="border-gray-600 hover:bg-gray-800 text-white">
+                  <Facebook className="w-5 h-5" />
+                </Button>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-gray-700 pt-8 text-center">
+            <p className="text-gray-400 mb-4">© 2025 Baltic Bengals. All rights reserved.</p>
+            <a
+              href="https://shakespeare.diy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-amber-400 hover:text-amber-300 transition-colors"
+            >
+              <Heart className="w-4 h-4 mr-2" />
+              Vibed with Shakespeare
+            </a>
+          </div>
+        </div>
+      </footer>
+
+      <style>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in {
+          animation: fade-in 0.8s ease-out;
+        }
+
+        .animate-fade-in-up {
+          animation: fade-in-up 0.8s ease-out;
+        }
+
+        html {
+          scroll-behavior: smooth;
+        }
+      `}</style>
     </div>
   );
 };
