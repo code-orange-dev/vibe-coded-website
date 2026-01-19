@@ -11,12 +11,12 @@ const Index = () => {
   });
 
   const kittenImages = [
-    '/IMG_3570.jpeg', // Amber
+    '/IMG_3250.jpeg', // Amber
     '/IMG_3536.jpeg', // Leo
     '/IMG_3531.jpeg', // Zara
     '/IMG_3535.jpeg', // Max
     '/IMG_3533.jpeg', // Luna
-    '/IMG_3529.jpeg', // Simba
+    '/IMG_3222.jpeg', // Simba
   ];
 
   const socialLinks = {
