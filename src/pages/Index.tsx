@@ -2,13 +2,18 @@ import { useSeoMeta } from '@unhead/react';
 import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { MapPin, Phone, Mail, Instagram, Facebook, Heart, Award, Sparkles, PawPrint, Users } from 'lucide-react';
+import { MapPin, Phone, Mail, Instagram, Facebook, Heart, Award, Sparkles, PawPrint, Users, Zap, LogIn } from 'lucide-react';
+import { LoginArea } from '@/components/auth/LoginArea';
+import { ZapButton } from '@/components/ZapButton';
+import { useCurrentUser } from '@/hooks/useCurrentUser';
 
 const Index = () => {
   useSeoMeta({
     title: 'Baltic Bengals - Premium Bengal Cat Cattery',
     description: 'Welcome to Baltic Bengals - your trusted source for beautiful, healthy, and well-socialized Bengal kittens. Located in the Baltic region, we specialize in breeding exceptional Bengal cats with stunning coats and loving personalities.',
   });
+
+  const { user } = useCurrentUser();
 
   const kittenImages = [
     '/IMG_3250.jpeg', // Amber
@@ -24,6 +29,9 @@ const Index = () => {
     facebook: 'https://www.facebook.com/balticbengals/',
     messenger: 'https://www.facebook.com/balticbengals/',
   };
+
+  // Lightning address for receiving zaps
+  const lightningAddress = 'superape7@primal.net';
 
   const [activeSection, setActiveSection] = useState('hero');
   const [scrolled, setScrolled] = useState(false);
@@ -70,7 +78,7 @@ const Index = () => {
                 Baltic Bengals
               </span>
             </div>
-            <div className="hidden md:flex space-x-8">
+            <div className="hidden md:flex space-x-8 items-center">
               {['About', 'Kittens', 'Our Bengals', 'Contact'].map((item) => (
                 <button
                   key={item}
@@ -82,6 +90,7 @@ const Index = () => {
                   {item}
                 </button>
               ))}
+              <LoginArea />
             </div>
           </div>
         </div>
@@ -141,6 +150,13 @@ const Index = () => {
               >
                 Contact Us
               </Button>
+              <ZapButton
+                pubkey={lightningAddress}
+                className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <Zap className="w-5 h-5 mr-2" />
+                Support Us
+              </ZapButton>
             </div>
           </div>
 
@@ -370,13 +386,23 @@ const Index = () => {
                       </span>
                     ))}
                   </div>
-                  <Button
-                    onClick={() => scrollToSection('contact')}
-                    className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold"
-                  >
-                    <Heart className="w-4 h-4 mr-2" />
-                    Inquire About {kitten.name}
-                  </Button>
+                  <div className="flex flex-col sm:flex-row gap-2">
+                    <Button
+                      onClick={() => scrollToSection('contact')}
+                      className="flex-1 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold"
+                    >
+                      <Heart className="w-4 h-4 mr-2" />
+                      Inquire About {kitten.name}
+                    </Button>
+                    <ZapButton
+                      pubkey={lightningAddress}
+                      className="flex-1 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-semibold"
+                      size="default"
+                    >
+                      <Zap className="w-4 h-4 mr-1" />
+                      Tip {kitten.name}
+                    </ZapButton>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -624,17 +650,37 @@ const Index = () => {
               </div>
             </div>
           </div>
-          <div className="border-t border-gray-700 pt-8 text-center">
-            <p className="text-gray-400 mb-4">© 2025 Baltic Bengals. All rights reserved.</p>
-            <a
-              href="https://shakespeare.diy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center text-amber-400 hover:text-amber-300 transition-colors"
-            >
-              <Heart className="w-4 h-4 mr-2" />
-              Vibed with Shakespeare
-            </a>
+          <div className="border-t border-gray-700 pt-8">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0">
+              <div className="text-center sm:text-left">
+                <p className="text-gray-400 mb-2">© 2025 Baltic Bengals. All rights reserved.</p>
+                <a
+                  href="https://shakespeare.diy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-amber-400 hover:text-amber-300 transition-colors"
+                >
+                  <Heart className="w-4 h-4 mr-2" />
+                  Vibed with Shakespeare
+                </a>
+              </div>
+
+              {/* Support Section */}
+              <div className="text-center sm:text-right">
+                <p className="text-sm text-gray-400 mb-2">Support our cattery with a lightning tip ⚡</p>
+                <div className="flex items-center justify-center sm:justify-end space-x-2">
+                  <ZapButton
+                    pubkey={lightningAddress}
+                    className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white"
+                    size="sm"
+                  >
+                    <Zap className="w-4 h-4 mr-1" />
+                    Tip Us
+                  </ZapButton>
+                  <span className="text-xs text-gray-500">{lightningAddress}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
